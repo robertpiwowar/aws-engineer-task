@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: CloudFormation template for simple S3 website.
+
+Outputs:
+  Arn:
+    Description: Arn of the bucket
+    Value: !GetAtt [ Website, Arn ]
+    Export:
+      Name: !Sub ${AWS::StackName}-Arn
+
+  WebsiteURL:
+    Description: URL of the website
+    Value: !GetAtt [ Website, WebsiteURL ]
+    Export:
+      Name: !Sub ${AWS::StackName}-WebsiteURL
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the bucket
+    MinLength: 5
+    MaxLength: 30
+
+Resources:
+  Website:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${BucketName}
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexFile: index.html

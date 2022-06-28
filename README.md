@@ -10,11 +10,11 @@ Additionally, simple template for website on S3 has been created.
 
 1. Access the infrastructure automation code located in the repository: https://github.com/robertpiwowar/aws-engineer-task
 2. Fork the repository to your github account
-3. Fix any errors in the current code (there is 1 error)
+3. Fix any errors in the current code (there is 1 syntax and 1 logical error)
 4. Amend the code so that the website will be available over public internet but only accessible from your public IP
 5. Enable website access log and send them to S3 bucket named ${BucketName}-logs
-6. Update VPC and/or Subnets files to reference VPC in Subnets and avoid entering VPC name in Subnets manually
-7. Add tags to all created resoureces, key: "Owner", value: your github username
+6. Update VPC and/or Subnets templates to reference VPC in Subnets by VPC stack name and avoid entering VPC Id
+7. Add tags to VPC and S3 buckets, key: "Owner", value: your github username
 
 Once all of the above tasks are done, open a pull request to merge your changes to the original repository. Please note that your pull request will be reviewed by the assessors but not merged.
 
