@@ -22,5 +22,5 @@ Once all of the above tasks are done, open a pull request to merge your changes 
 ### Notes
 
 - It is assumed that you have an existing GitHub account, if you don’t, please create one for the purpose of completing the task
-- Completing all of the tasks should not take more than 1-2 hours
+- Completing all of the tasks should not take more than 1 hour
 - You are not required to provide a deployed solution, only the code will be assessed
