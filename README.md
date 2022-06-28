@@ -3,6 +3,7 @@
 CloudFormation templates for the following AWS resources have been developed on AWS as basic preparation for further deployment:
 1. VPC
 2. Subnets
+
 Additionally, simple template for website on S3 has been created. 
 
 ### Your task
