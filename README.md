@@ -15,7 +15,7 @@ Additionally, simple template for website on S3 has been created.
 5. Enable website access log and send them to S3 bucket named ${BucketName}-logs
 6. Update VPC and/or Subnets templates to reference VPC in Subnets by VPC stack name and avoid entering VPC Id
 7. Add tags to VPC and S3 buckets, key: "Owner", value: your github username
-8. Improve code formatting if required
+8. Improve code formatting consistency if required
 
 Once all of the above tasks are done, open a pull request to merge your changes to the original repository. Please note that your pull request will be reviewed by the assessors but not merged.
 
