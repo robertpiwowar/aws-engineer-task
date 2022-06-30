@@ -2,19 +2,6 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: CloudFormation template for simple S3 website.
 
-Outputs:
-  Arn:
-    Description: Arn of the bucket
-    Value: !GetAtt [ Website, Arn ]
-    Export:
-      Name: !Sub ${AWS::StackName}-Arn
-
-  WebsiteURL:
-    Description: URL of the website
-    Value: !GetAtt [ Website, WebsiteURL ]
-    Export:
-      Name: !Sub ${AWS::StackName}-WebsiteURL
-
 Parameters:
   BucketName:
     Type: String
@@ -30,3 +17,52 @@ Resources:
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexFile: index.html
+      LoggingConfiguration:
+        DestinationBucketName: !Ref WebsiteLog
+        LogFilePrefix: test-logs
+      Tags:
+        - Key: Owner
+          Value: H379
+
+IpBucketPolicy:
+  Type: AWS::S3::BucketPolicy
+  Properties:
+    Bucket: !Ref Website
+    PolicyDocument:
+      Version: 2012-10-17
+      Statement:
+        - Action:
+            - 's3:GetObject'
+            - 's3:*'
+          Effect: Allow
+          Resource: !Join
+            - ''
+            - - 'arn:aws:s3:::'
+              - !Ref Website
+              - /*
+          Principal: '*'
+          Condition:
+            IpAddress:
+              aws:SourceIp:
+              - 124.123.170.204/32 
+
+  WebsiteLog:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${BucketName}-logs
+      Tags:
+        - Key: Owner
+          Value: H379
+
+Outputs:
+  Arn:
+    Description: Arn of the bucket
+    Value: !GetAtt [ Website, Arn ]
+    Export:
+      Name: !Sub ${AWS::StackName}-Arn
+
+  WebsiteURL:
+    Description: URL of the website
+    Value: !GetAtt [ Website, WebsiteURL ]
+    Export:
+      Name: !Sub ${AWS::StackName}-WebsiteURL
