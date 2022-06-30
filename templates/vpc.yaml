@@ -1,3 +1,5 @@
+AWSTemplateFormatVersion: 2010-09-09
+
 Description:  This template deploys a VPC.
 
 Parameters:
@@ -20,3 +22,11 @@ Resources:
       Tags:
         - Key: Name
           Value: !Ref VpcName
+        - Key: Owner
+          Value: H379        
+Outputs:
+  VpcId:
+    Description: Id of the Vpc
+    Value: !Ref VPC
+    Export:
+      Name: !Sub ${AWS::StackName}-Vpc-Id

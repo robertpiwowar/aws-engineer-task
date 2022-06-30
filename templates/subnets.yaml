@@ -1,10 +1,14 @@
+AWSTemplateFormatVersion: 2010-09-09
+
 Description:  This template deploys subnets in entered VPC.
 
 Parameters:
   VpcId:
     Description: VPC Id to create subnets there
     Type: String
-
+    Default: Fn::ImportValue:
+               !Sub ${NetworkStack}-Vpc-Id
+               
   PublicSubnet1CIDR:
     Description: Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone
     Type: String
